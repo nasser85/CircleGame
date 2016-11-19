@@ -1,5 +1,6 @@
 app.factory('MovementFactory', function() {
 	var movementFactory = {};
+  var sizes = ['50', '75', '100', '125', '150', '175', '200'];
 	function randomShake(circle) {
 		var movement = Math.floor(4*Math.random());
    		if (movement === 0) {
@@ -16,19 +17,27 @@ app.factory('MovementFactory', function() {
   function checkBounds(circle) {
     if (parseInt(circle.image.style.left) + parseInt(circle.image.style.width) <= 0) {
       circle.image.style.left = '3000px';
-      circle.image.style.top = Math.floor(2000*Math.random()) + 500;
+      circle.image.style.top = Math.floor(2000*Math.random()) + 300 + 'px';
+      circle.image.height = sizes[Math.floor(7*Math.random())];
+      circle.image.width = circle.image.height;
     }
     if (parseInt(circle.image.style.left) >= 3000) {
       circle.image.style.left = -circle.image.style.width;
-      circle.image.style.top = Math.floor(2000*Math.random()) + 500;
+      circle.image.style.top = Math.floor(2000*Math.random()) + 300 + 'px';
+      circle.image.height = sizes[Math.floor(7*Math.random())];
+      circle.image.width = circle.image.height;
     }
     if (parseInt(circle.image.style.top) + parseInt(circle.image.style.height) <= 0) {
       circle.image.style.top = '3000px'
-      circle.image.style.left = Math.floor(2000*Math.random()) + 500;
+      circle.image.style.left = Math.floor(2000*Math.random()) + 300 + 'px';
+      circle.image.height = sizes[Math.floor(7*Math.random())];
+      circle.image.width = circle.image.height;
     }
     if (parseInt(circle.image.style.top) >= 3000) {
       circle.image.style.top = -circle.image.style.height;
-      circle.image.style.left = Math.floor(2000*Math.random()) + 500;
+      circle.image.style.left = Math.floor(2000*Math.random()) + 300 + 'px';
+      circle.image.height = sizes[Math.floor(7*Math.random())];
+      circle.image.width = circle.image.height;
     }
   }
 
