@@ -24,15 +24,15 @@ app.factory('UtilsFactory', [ 'CircleService', function(CircleService) {
 			size = sizes[Math.floor(7*Math.random())];
 			if (i%4 === 0) {
 				dX = 0;
-				dY = 10;
+				dY = 5 + Math.floor(3*Math.random());
 			} else if (i%3 === 0) {
-				dX = 10;
+				dX = 5 + Math.floor(3*Math.random());
 				dY = 0;
 			} else if (i%2 === 0) {
 				dX = 0;
-				dY = -10;
+				dY = -5 - Math.floor(3*Math.random());
 			} else {
-				dX = -10;
+				dX = -5 - Math.floor(3*Math.random());
 				dY = 0;
 			}
 			circles.push(new CircleService(img, x, y, size, dX, dY));
