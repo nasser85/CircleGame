@@ -3,41 +3,52 @@ app.factory('MovementFactory', function() {
   var sizes = ['50', '75', '100', '125', '150', '175', '200'];
 	function randomShake(circle) {
 		var movement = Math.floor(4*Math.random());
+    var offSet = Math.floor(parseInt(circle.image.width)/20);
    		if (movement === 0) {
-   			circle.image.style.top = (parseInt(circle.image.style.top) + 10) + "px"
+   			circle.image.style.top = (parseInt(circle.image.style.top) + offSet) + "px"
    		} else if (movement === 1) {
-   			circle.image.style.top = (parseInt(circle.image.style.top) - 10) + "px"
+   			circle.image.style.top = (parseInt(circle.image.style.top) - offSet) + "px"
    		} else if (movement === 2) {
-   			circle.image.style.left = (parseInt(circle.image.style.left) + 10) + "px"
+   			circle.image.style.left = (parseInt(circle.image.style.left) + offSet) + "px"
    		} else {
-   			circle.image.style.left = (parseInt(circle.image.style.left) - 10) + "px"
+   			circle.image.style.left = (parseInt(circle.image.style.left) - offSet) + "px"
    		}
 	}
+
+  function reCreate(circle) {
+    circle.image.height = sizes[Math.floor(7*Math.random())];
+    circle.image.width = circle.image.height;
+    if (circle.directionY > 0) {
+      circle.directionY = 5 + Math.floor(3*Math.random());
+    } else if (circle.directionY < 0) {
+      circle.directionY = -5 - Math.floor(3*Math.random());
+    } else if (circle.directionX > 0) {
+      circle.directionX = 5 + Math.floor(3*Math.random());
+    } else {
+      circle.directionX = -5 - Math.floor(3*Math.random());
+    }
+  }
 
   function checkBounds(circle) {
     if (parseInt(circle.image.style.left) + parseInt(circle.image.style.width) <= 0) {
       circle.image.style.left = '3000px';
       circle.image.style.top = Math.floor(2000*Math.random()) + 300 + 'px';
-      circle.image.height = sizes[Math.floor(7*Math.random())];
-      circle.image.width = circle.image.height;
+      reCreate(circle);
     }
     if (parseInt(circle.image.style.left) >= 3000) {
       circle.image.style.left = -circle.image.style.width;
       circle.image.style.top = Math.floor(2000*Math.random()) + 300 + 'px';
-      circle.image.height = sizes[Math.floor(7*Math.random())];
-      circle.image.width = circle.image.height;
+      reCreate(circle);
     }
     if (parseInt(circle.image.style.top) + parseInt(circle.image.style.height) <= 0) {
       circle.image.style.top = '3000px'
       circle.image.style.left = Math.floor(2000*Math.random()) + 300 + 'px';
-      circle.image.height = sizes[Math.floor(7*Math.random())];
-      circle.image.width = circle.image.height;
+      reCreate(circle);
     }
     if (parseInt(circle.image.style.top) >= 3000) {
       circle.image.style.top = -circle.image.style.height;
       circle.image.style.left = Math.floor(2000*Math.random()) + 300 + 'px';
-      circle.image.height = sizes[Math.floor(7*Math.random())];
-      circle.image.width = circle.image.height;
+      reCreate(circle);
     }
   }
 
