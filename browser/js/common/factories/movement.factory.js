@@ -13,8 +13,28 @@ app.factory('MovementFactory', function() {
    		}
 	}
 
+  function checkBounds(circle) {
+    if (parseInt(circle.image.style.left) + parseInt(circle.image.style.width) <= 0) {
+      circle.image.style.left = '3000px';
+      circle.image.style.top = Math.floor(3000*Math.random()) - parseInt(circle.image.style.height);
+    }
+    if (parseInt(circle.image.style.left) >= 3000) {
+      circle.image.style.left = -circle.image.style.width;
+      circle.image.style.top = Math.floor(3000*Math.random()) - parseInt(circle.image.style.height);
+    }
+    if (parseInt(circle.image.style.top) + parseInt(circle.image.style.height) <= 0) {
+      circle.image.style.top = '3000px'
+      circle.image.style.left = Math.floor(3000*Math.random()) - parseInt(circle.image.style.width);
+    }
+    if (parseInt(circle.image.style.top) >= 3000) {
+      circle.image.style.top = -circle.image.style.height;
+      circle.image.style.left = Math.floor(3000*Math.random()) - parseInt(circle.image.style.width);
+    }
+  }
+
 	movementFactory.circleMovement = function(circles, x, y, character) {
 		circles.forEach(function(el) {
+        checkBounds(el);
     		el.image.style.left = (parseInt(el.image.style.left) + el.directionX) + "px"
     		el.image.style.top = (parseInt(el.image.style.top) + el.directionY) + "px"
     	})
