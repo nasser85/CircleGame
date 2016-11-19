@@ -11,6 +11,7 @@ app.factory('UtilsFactory', [ 'CircleService', function(CircleService) {
 	utilsFactory.createCreatureWave = function(number) {
 		var num = number || 20;
 		var img = creatureImages[5];
+		var sizes = ['50', '75', '100', '125', '150', '175', '200'];
 		var x;
 		var y;
 		var size;
@@ -20,7 +21,7 @@ app.factory('UtilsFactory', [ 'CircleService', function(CircleService) {
 		for (var i = 0; i < num; i ++) {
 			x = Math.floor(2000*Math.random()) + $('#character').position().left;
 			y = Math.floor(2000*Math.random()) + $('#character').position().top;
-			size = 100 + Math.floor(100*Math.random());
+			size = sizes[Math.floor(7*Math.random())];
 			if (i%4 === 0) {
 				dX = 0;
 				dY = 10;
