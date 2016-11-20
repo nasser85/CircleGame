@@ -44,7 +44,7 @@ app.factory('UtilsFactory', [ 'CircleService', 'GemService', function(CircleServ
 	}
 
 	utilsFactory.createGemWave = function(number) {
-		var num = number || 80;
+		var num = number || 120;
 		var gems = [];
 		var colors = ["rgba(0, 250, 250, 0.5)", "rgba(0, 0, 250, 0.5)", "rgba(250, 0, 250, 0.5)", "rgba(250, 250, 0, 0.5)", "rgba(250, 0, 0, 0.5)", "rgba(0, 250, 0, 0.5)"];
 		var color;
