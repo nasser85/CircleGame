@@ -1,53 +1,62 @@
 app.factory('MovementFactory', function() {
 	var movementFactory = {};
   var sizes = ['50', '75', '100', '125', '150', '175', '200'];
+  var colors = ["rgba(0, 250, 250, 0.5)", "rgba(0, 0, 250, 0.5)", "rgba(250, 0, 250, 0.5)", "rgba(250, 250, 0, 0.5)", "rgba(250, 0, 0, 0.5)", "rgba(0, 250, 0, 0.5)"];
 	function randomShake(circle) {
 		var movement = Math.floor(4*Math.random());
     var offSet = Math.floor(parseInt(circle.image.width)/20);
    		if (movement === 0) {
-   			circle.image.style.top = (parseInt(circle.image.style.top) + offSet) + "px"
+   			circle.image.style.top = (parseInt(circle.image.style.top) + offSet) + "px";
    		} else if (movement === 1) {
-   			circle.image.style.top = (parseInt(circle.image.style.top) - offSet) + "px"
+   			circle.image.style.top = (parseInt(circle.image.style.top) - offSet) + "px";
    		} else if (movement === 2) {
-   			circle.image.style.left = (parseInt(circle.image.style.left) + offSet) + "px"
+   			circle.image.style.left = (parseInt(circle.image.style.left) + offSet) + "px";
    		} else {
-   			circle.image.style.left = (parseInt(circle.image.style.left) - offSet) + "px"
+   			circle.image.style.left = (parseInt(circle.image.style.left) - offSet) + "px";
    		}
 	}
 
   function reCreate(circle) {
-    circle.image.height = sizes[Math.floor(7*Math.random())];
-    circle.image.width = circle.image.height;
-    if (circle.directionY > 0) {
-      circle.directionY = 5 + Math.floor(3*Math.random());
-    } else if (circle.directionY < 0) {
-      circle.directionY = -5 - Math.floor(3*Math.random());
-    } else if (circle.directionX > 0) {
-      circle.directionX = 5 + Math.floor(3*Math.random());
+    var baseMove = 7;
+    var factor = 4;
+    if (circle.image.tagName == "IMG") {
+      circle.image.height = sizes[Math.floor(7*Math.random())];
+      circle.image.width = circle.image.height;
+      baseMove = 5;
+      factor = 3;
     } else {
-      circle.directionX = -5 - Math.floor(3*Math.random());
+      circle.image.backgroundColor = colors[Math.floor(6*Math.random())];
+    }
+    if (circle.directionY > 0) {
+      circle.directionY = baseMove + Math.floor(factor*Math.random());
+    } else if (circle.directionY < 0) {
+      circle.directionY = -baseMove - Math.floor(factor*Math.random());
+    } else if (circle.directionX > 0) {
+      circle.directionX = baseMove + Math.floor(factor*Math.random());
+    } else {
+      circle.directionX = -baseMove - Math.floor(factor*Math.random());
     }
   }
 
   function checkBounds(circle) {
     if (parseInt(circle.image.style.left) + parseInt(circle.image.style.width) <= 0) {
       circle.image.style.left = '3000px';
-      circle.image.style.top = Math.floor(2000*Math.random()) + 300 + 'px';
+      circle.image.style.top = Math.floor(3000*Math.random()) + 300 + 'px';
       reCreate(circle);
     }
     if (parseInt(circle.image.style.left) >= 3000) {
       circle.image.style.left = -circle.image.style.width;
-      circle.image.style.top = Math.floor(2000*Math.random()) + 300 + 'px';
+      circle.image.style.top = Math.floor(3000*Math.random()) + 300 + 'px';
       reCreate(circle);
     }
     if (parseInt(circle.image.style.top) + parseInt(circle.image.style.height) <= 0) {
       circle.image.style.top = '3000px'
-      circle.image.style.left = Math.floor(2000*Math.random()) + 300 + 'px';
+      circle.image.style.left = Math.floor(3000*Math.random()) + 300 + 'px';
       reCreate(circle);
     }
     if (parseInt(circle.image.style.top) >= 3000) {
       circle.image.style.top = -circle.image.style.height;
-      circle.image.style.left = Math.floor(2000*Math.random()) + 300 + 'px';
+      circle.image.style.left = Math.floor(3000*Math.random()) + 300 + 'px';
       reCreate(circle);
     }
   }
@@ -55,30 +64,26 @@ app.factory('MovementFactory', function() {
 	movementFactory.circleMovement = function(circles, x, y, character) {
 		circles.forEach(function(el) {
         checkBounds(el);
-    		el.image.style.left = (parseInt(el.image.style.left) + el.directionX) + "px"
-    		el.image.style.top = (parseInt(el.image.style.top) + el.directionY) + "px"
+    		el.image.style.left = (parseInt(el.image.style.left) + el.directionX) + "px";
+    		el.image.style.top = (parseInt(el.image.style.top) + el.directionY) + "px";
+        randomShake(el);
     	})
        	if (y < $('body').height()/2 && character.yPos > $('#character').position().top) {
 	        circles.forEach(function(el) {
-           		el.image.style.top = (parseInt(el.image.style.top) + 10) + "px"
-           		randomShake(el);
+           		el.image.style.top = (parseInt(el.image.style.top) + 10) + "px";
            	})
        	} else if (y >= $('body').height()/2 && character.yPos < 3000) {
 	        circles.forEach(function(el) {
-           		el.image.style.top = (parseInt(el.image.style.top) - 10) + "px"
-           		var movement = Math.floor(4*Math.random());
-           		randomShake(el);
+           		el.image.style.top = (parseInt(el.image.style.top) - 10) + "px";
            	})
        	}
        	if (x < $('body').width()/2 && character.xPos > $('#character').position().left) {
 	        circles.forEach(function(el) {
-           		el.image.style.left = (parseInt(el.image.style.left) + 10) + "px"
-           		randomShake(el);
+           		el.image.style.left = (parseInt(el.image.style.left) + 10) + "px";
            	})
        	} else if (x >= $('body').width()/2 && character.xPos < 3000) {
 	        circles.forEach(function(el) {
-           		el.image.style.left = (parseInt(el.image.style.left) - 10) + "px"
-           		randomShake(el);
+           		el.image.style.left = (parseInt(el.image.style.left) - 10) + "px";
            	})
        	}        
 	}
