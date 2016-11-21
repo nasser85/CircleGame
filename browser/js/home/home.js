@@ -13,8 +13,9 @@ app.controller('HomeCtrl', function($scope, UtilsFactory, MovementFactory, MainC
     	var creatures = UtilsFactory.createCreatureWave();
     	var gems = UtilsFactory.createGemWave();
     	var mainCharacter = new MainCharacterService();
-    	var mouseX = $('body').width()/2;
-    	var mouseY = $('body').height()/2;
+    	var mouseX = $(window).width()/2;
+    	var mouseY = $(window).height()/2;
+        console.log(mouseX, mouseY)
         var startTime = new Date().getTime();
        
 
