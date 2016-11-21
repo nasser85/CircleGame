@@ -1,15 +1,21 @@
 app.factory('UtilsFactory', [ 'CircleService', 'GemService', function(CircleService, GemService) {
 	var utilsFactory = {};
 	var creatureImages = ['1.png', '2.png', '3.png', '4.png', '5.png', 'skull.png'];
+	var colors = ["rgba(0, 250, 250, 0.5)", "rgba(0, 0, 250, 0.5)", "rgba(250, 0, 250, 0.5)", "rgba(250, 250, 0, 0.5)", "rgba(250, 0, 0, 0.5)", "rgba(0, 250, 0, 0.5)"];
 
 	utilsFactory.initializeGame = function() {
     	document.body.style.backgroundPosition = "700px, 880px";
     	document.body.style.height = '500px';
     	document.body.style.width = '100%';
+    	document.getElementById('character').style.backgroundColor = colors[Math.floor(6*Math.random())];
+    	document.getElementById('character').style.height = '50px';
+    	document.getElementById('character').style.width = '50px';
+    	document.getElementById('character').style.top = $(window).height()/2 - parseInt(document.getElementById('character').height)/2 + 'px';
+    	document.getElementById('character').style.left = $(window).width()/2 - parseInt(document.getElementById('character').width)/2 +'px';
 	}
 
 	utilsFactory.createCreatureWave = function(number) {
-		var num = number || 20;
+		var num = number || 40;
 		var img = creatureImages[5];
 		var sizes = ['50', '75', '100', '125', '150', '175', '200'];
 		var x;
@@ -19,8 +25,8 @@ app.factory('UtilsFactory', [ 'CircleService', 'GemService', function(CircleServ
 		var dY;
 		var circles = [];
 		for (var i = 0; i < num; i ++) {
-			x = Math.floor(2000*Math.random()) + $('#character').position().left;
-			y = Math.floor(2000*Math.random()) + $('#character').position().top;
+			x = Math.floor(2000*Math.random()) + parseInt(document.getElementById('character').style.left);
+			y = Math.floor(2000*Math.random()) + parseInt(document.getElementById('character').style.height);
 			size = sizes[Math.floor(7*Math.random())];
 			if (i%4 === 0) {
 				dX = 0;
@@ -46,7 +52,6 @@ app.factory('UtilsFactory', [ 'CircleService', 'GemService', function(CircleServ
 	utilsFactory.createGemWave = function(number) {
 		var num = number || 120;
 		var gems = [];
-		var colors = ["rgba(0, 250, 250, 0.5)", "rgba(0, 0, 250, 0.5)", "rgba(250, 0, 250, 0.5)", "rgba(250, 250, 0, 0.5)", "rgba(250, 0, 0, 0.5)", "rgba(0, 250, 0, 0.5)"];
 		var color;
 		var y = Math.floor(2000*Math.random()) + $('#character').position().left;
 		var x = Math.floor(2000*Math.random()) + $('#character').position().left;

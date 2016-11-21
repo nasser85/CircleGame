@@ -2,7 +2,9 @@ app.factory('GemService', function() {
 	function Gem(color, x, y, directionX, directionY) {
 		this.image = document.createElement('DIV');
 		this.image.style.backgroundColor = color;
-		this.image.className = "gems"
+		this.image.className = "gems";
+		this.image.width = "50px";
+		this.image.height = "50px";
         this.image.style.position = 'absolute';
         this.image.style.left = x + 'px';
         this.image.style.top = y + 'px';
