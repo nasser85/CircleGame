@@ -40,23 +40,23 @@ app.factory('MovementFactory', function() {
 
   function checkBounds(circle, character) {
     if (parseInt(circle.image.style.left) + parseInt(circle.image.width) + character.xPos < 0) {
-      circle.image.style.left = 3000 + 'px';
-      circle.image.style.top = Math.floor(3000*Math.random()) + 300 + 'px';
+      circle.image.style.left = 4500 - character.xPos + 'px';
+      circle.image.style.top = Math.floor(3000*Math.random()) + $(window).height()/2 - character.yPos + 'px';
       reCreate(circle);
     }
-    if (parseInt(circle.image.style.left) > 3000) {
+    if (parseInt(circle.image.style.left) > 4500 - character.xPos) {
       circle.image.style.left = -character.xPos + 'px';
-      circle.image.style.top = Math.floor(3000*Math.random()) + 300 + 'px';
+      circle.image.style.top = Math.floor(3000*Math.random()) + $(window).height()/2 - character.yPos + 'px';
       reCreate(circle);
     }
     if (parseInt(circle.image.style.top) + parseInt(circle.image.height) + character.yPos < 0) {
-      circle.image.style.top = 3000 + 'px';
-      circle.image.style.left = Math.floor(3000*Math.random()) + 300 + 'px';
+      circle.image.style.top = 4500 - character.xPos + 'px';
+      circle.image.style.left = Math.floor(3000*Math.random()) + $(window).width()/2 + - character.xPos + 'px';
       reCreate(circle);
     }
-    if (parseInt(circle.image.style.top) > 3000) {
+    if (parseInt(circle.image.style.top) > 4500 - character.yPos) {
       circle.image.style.top = -character.yPos + 'px';
-      circle.image.style.left = Math.floor(3000*Math.random()) + 300 + 'px';
+      circle.image.style.left = Math.floor(3000*Math.random()) + $(window).width()/2 - character.xPos + 'px';
       reCreate(circle);
     }
   }
