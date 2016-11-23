@@ -25,8 +25,8 @@ app.factory('UtilsFactory', [ 'CircleService', 'GemService', function(CircleServ
 		var dY;
 		var circles = [];
 		for (var i = 0; i < num; i ++) {
-			x = Math.floor(2000*Math.random()) + parseInt(document.getElementById('character').style.left);
-			y = Math.floor(2000*Math.random()) + parseInt(document.getElementById('character').style.height);
+			x = Math.floor(4000*Math.random()) - $(window).width()/2;
+			y = Math.floor(4000*Math.random()) - $(window).height()/2;
 			size = sizes[Math.floor(7*Math.random())];
 			if (i%4 === 0) {
 				dX = 0;
@@ -53,12 +53,14 @@ app.factory('UtilsFactory', [ 'CircleService', 'GemService', function(CircleServ
 		var num = number || 120;
 		var gems = [];
 		var color;
-		var y = Math.floor(2000*Math.random()) + $('#character').position().left;
-		var x = Math.floor(2000*Math.random()) + $('#character').position().left;
+		var x;
+		var y;
 		var dX;
 		var dY;
 		for (var i = 0; i < num; i++) {
 			color = colors[Math.floor(6*Math.random())];
+			y = Math.floor(4000*Math.random()) + $('#character').position().left;
+			x = Math.floor(4000*Math.random()) + $('#character').position().left;
 			if (i%4 === 0) {
 				dX = 0;
 				dY = 7 + Math.floor(4*Math.random());

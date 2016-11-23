@@ -7,7 +7,7 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('HomeCtrl', function($scope, UtilsFactory, MovementFactory, MainCharacterService) {
-		
+		$scope.skulls = 0;
     $(document).ready(function() {
     	UtilsFactory.initializeGame();
     	var creatures = UtilsFactory.createCreatureWave();
