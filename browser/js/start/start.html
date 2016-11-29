@@ -1,0 +1,18 @@
+<div id="start">
+	<div>
+		<h1>Circles</h1>
+		<button ui-sref="home" type="button" class="btn btn-default btn-lg">Play Game</button>
+		<button type="button" class="btn btn-default btn-lg">Tutorial</button>
+	</div>
+
+	<div>
+		<div class="row">
+		  <div ng-repeat="player in players" class="col-xs-6 col-md-3">
+		    <a >
+		      <img ng-click="select(player)" src="{{player}}" alt="...">
+		    </a>
+		  </div>
+		</div>
+	</div>
+
+</div>
