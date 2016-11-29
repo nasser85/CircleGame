@@ -3,6 +3,7 @@ app.factory('MainCharacterService', function() {
 		this.yPos = 1000 + $('#character').position().top;
     	this.xPos = 1000 + $('#character').position().left;
     	this.skulls = 0;
+    	this.alive = true;
 	}
 
 	return Character;

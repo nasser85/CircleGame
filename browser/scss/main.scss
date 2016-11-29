@@ -3,7 +3,7 @@
 }
 
 body {
-   background: url(pattern.png);
+   background: url(main2.jpg);
   background-repeat: repeat;
   background-attachment: fixed;
   overflow: hidden;
@@ -24,6 +24,19 @@ body {
 #main {
   padding-top: 60px;
   margin: 0 auto;
+}
+
+#game-menu {
+  display: none;
+  z-index: 99;
+  .jumbotron {
+    z-index: 99;
+    margin-left: 25%;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    
+  }
 }
 
 .gems {

@@ -1,17 +1,20 @@
 app.factory('UtilsFactory', [ 'CircleService', 'GemService', function(CircleService, GemService) {
 	var utilsFactory = {};
 	var creatureImages = ['1.png', '2.png', '3.png', '4.png', '5.png', 'skull.png'];
-	var colors = ["rgba(0, 250, 250, 0.5)", "rgba(0, 0, 250, 0.5)", "rgba(250, 0, 250, 0.5)", "rgba(250, 250, 0, 0.5)", "rgba(250, 0, 0, 0.5)", "rgba(0, 250, 0, 0.5)"];
+	var colors = ["rgba(0, 250, 250, 0.8)", "rgba(0, 0, 250, 0.8)", "rgba(250, 0, 250, 0.8)", "rgba(250, 250, 0, 0.8)", "rgba(250, 0, 0, 0.8)", "rgba(0, 250, 0, 0.8)"];
 
 	utilsFactory.initializeGame = function() {
+		var character = document.getElementById('character');
     	document.body.style.backgroundPosition = "700px, 880px";
     	document.body.style.height = '500px';
     	document.body.style.width = '100%';
-    	document.getElementById('character').style.backgroundColor = colors[Math.floor(6*Math.random())];
-    	document.getElementById('character').style.height = '50px';
-    	document.getElementById('character').style.width = '50px';
-    	document.getElementById('character').style.top = $(window).height()/2 - parseInt(document.getElementById('character').height)/2 + 'px';
-    	document.getElementById('character').style.left = $(window).width()/2 - parseInt(document.getElementById('character').width)/2 +'px';
+    	character.style.backgroundColor = colors[Math.floor(6*Math.random())];
+    	character.className = "";
+    	character.style.display = 'block';
+    	character.style.height = '50px';
+    	character.style.width = '50px';
+    	character.style.top = $(window).height()/2 - parseInt(document.getElementById('character').height)/2 + 'px';
+    	character.style.left = $(window).width()/2 - parseInt(document.getElementById('character').width)/2 +'px';
 	}
 
 	utilsFactory.createCreatureWave = function(number) {

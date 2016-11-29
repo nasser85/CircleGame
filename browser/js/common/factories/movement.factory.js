@@ -1,7 +1,7 @@
 app.factory('MovementFactory', function() {
 	var movementFactory = {};
   var sizes = ['50', '75', '100', '125', '150', '175', '200'];
-  var colors = ["rgba(0, 250, 250, 0.5)", "rgba(0, 0, 250, 0.5)", "rgba(250, 0, 250, 0.5)", "rgba(250, 250, 0, 0.5)", "rgba(250, 0, 0, 0.5)", "rgba(0, 250, 0, 0.5)"];
+  var colors = ["rgba(0, 250, 250, 0.8)", "rgba(0, 0, 250, 0.8)", "rgba(250, 0, 250, 0.8)", "rgba(250, 250, 0, 0.8)", "rgba(250, 0, 0, 0.8)", "rgba(0, 250, 0, 0.8)"];
 	function randomShake(circle) {
 		var movement = Math.floor(4*Math.random());
     var offSet = Math.floor(parseInt(circle.image.width)/20);
@@ -61,7 +61,7 @@ app.factory('MovementFactory', function() {
     }
   }
 
-  function checkCollision(circle) {
+  function checkCollision(circle, mainCharacter) {
     var character = document.getElementById('character');
     var circleLeft = parseInt(circle.image.style.left);
     var circleRight = circleLeft + parseInt(circle.image.width);
@@ -71,6 +71,7 @@ app.factory('MovementFactory', function() {
     var right = left + parseInt(character.width);
     var top = $(window).height()/2 - parseInt(character.width)/2;
     var bottom = top + parseInt(character.height);
+    var gameMenu = document.getElementById('game-menu');
 
     if (circle.image.tagName == "DIV") {
 
@@ -112,8 +113,14 @@ app.factory('MovementFactory', function() {
               circle.image.className = "";
             }, 1000)
             
-        } else {
-          
+        } else if (parseInt(circle.image.height) > parseInt(character.style.height)) {
+          character.className = "magictime holeOut";
+          mainCharacter.alive = false;
+          setTimeout(function() {
+            character.style.display = 'none';
+            gameMenu.style.display = 'block';
+            gameMenu.style.zIndex = '99';
+          }, 1000)
         }
         
       }
@@ -131,8 +138,12 @@ app.factory('MovementFactory', function() {
     		el.image.style.left = (parseInt(el.image.style.left) + el.directionX) + "px";
     		el.image.style.top = (parseInt(el.image.style.top) + el.directionY) + "px";
         randomShake(el);
-        checkCollision(el);
+        if (character.alive) {
+          checkCollision(el, character);
+        }
+        
     	})
+      if (character.alive) {
        	if (y < $(window).height()/2 && character.yPos > $('#character').position().top) {
 	        circles.forEach(function(el) {
            		el.image.style.top = (parseInt(el.image.style.top) + 10) + "px";
@@ -150,11 +161,13 @@ app.factory('MovementFactory', function() {
 	        circles.forEach(function(el) {
            		el.image.style.left = (parseInt(el.image.style.left) - 10) + "px";
            	})
-       	}        
+       	}
+      }        
 	}
 
 	movementFactory.backgroundMovement = function(begin, x, y, character) {
-		if (y < $(window).height()/2 && character.yPos > $('#character').position().top) {
+		if (character.alive) {    
+        if (y < $(window).height()/2 && character.yPos > $('#character').position().top) {
        		var up = Math.floor((new Date().getTime()-begin)/5);
 	        document.body.style.backgroundPositionY =  up +'px';
 	        character.yPos -= 10;
@@ -172,6 +185,7 @@ app.factory('MovementFactory', function() {
 	        document.body.style.backgroundPositionX =  right +'px';
 	        character.xPos += 10;
        	}
+    }
 	}
 
 
