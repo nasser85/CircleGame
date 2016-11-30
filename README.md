@@ -1,7 +1,8 @@
 # Untitled Circle Game Project
 ## Screenshot
 <p align="center">
-  <img src="https://nasser85.github.io/personal-site/game.png" width="40%"/>
+  <img src="https://nasser85.github.io/personal-site/circle1.png" width="50%"/>
+  <img src="https://nasser85.github.io/personal-site/circle2.png" width="50%"/>
 </p>
 
 ## Getting Started
