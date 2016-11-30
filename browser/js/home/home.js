@@ -7,8 +7,6 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('HomeCtrl', function($scope, $rootScope, UtilsFactory, MovementFactory, MainCharacterService, $state) {
-		$scope.skulls = 0;
-        $scope.game = false;
         $scope.player = $rootScope.mainCharacter || "1.png";
 
     $(document).ready(function() {
@@ -28,6 +26,7 @@ app.controller('HomeCtrl', function($scope, $rootScope, UtilsFactory, MovementFa
             creatures = UtilsFactory.createCreatureWave();
             gems = UtilsFactory.createGemWave();
             mainCharacter = new MainCharacterService();
+            mainCharacter.skulls = 0;
             mouseX = $(window).width()/2;
             mouseY = $(window).height()/2;
             startTime = new Date().getTime();
@@ -39,11 +38,9 @@ app.controller('HomeCtrl', function($scope, $rootScope, UtilsFactory, MovementFa
 
         function destroyGame() {
             creatures.forEach(function(el) {
-                console.log(el.image.parentNode);
                 el.image.parentNode.removeChild(el.image);
             });
             gems.forEach(function(el) {
-                console.log(el.image);
                 el.image.parentNode.removeChild(el.image);
             });
             clearInterval(creatureAnimation);
@@ -67,7 +64,6 @@ app.controller('HomeCtrl', function($scope, $rootScope, UtilsFactory, MovementFa
 		    mouseY = event.clientY;
             if (!mainCharacter.alive) {
                 clearInterval(backgroundAnimation);
-
             }
 		});
             

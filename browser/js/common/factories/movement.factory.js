@@ -98,8 +98,9 @@ app.factory('MovementFactory', function() {
       }
     } else {
       if (circleRight >= left + 30 && circleLeft <= right - 30 && circleTop <= bottom - 30 && circleBottom >= top + 30) {
-        if (parseInt(circle.image.height) < parseInt(character.style.height)) {
+        if (circle.image.className !== "magictime bombRightOut" && parseInt(circle.image.height) < parseInt(character.style.height)) {
             circle.image.className = "magictime bombRightOut";
+            mainCharacter.skulls ++;
             setTimeout(function() {
               if (circle.directionY > 0) {
                 circle.image.style.top = '4000px';
@@ -113,13 +114,14 @@ app.factory('MovementFactory', function() {
               circle.image.className = "";
             }, 1000)
             
-        } else if (parseInt(circle.image.height) > parseInt(character.style.height)) {
+        } else if (circle.image.className !== "magictime bombRightOut" && parseInt(circle.image.height) > parseInt(character.style.height)) {
           character.className = "magictime holeOut";
           mainCharacter.alive = false;
           setTimeout(function() {
             character.style.display = 'none';
             gameMenu.style.display = 'block';
             gameMenu.style.zIndex = '99';
+            document.getElementById('score').innerHTML = "You captured " + mainCharacter.skulls + " skulls!";
           }, 1000)
         }
         
