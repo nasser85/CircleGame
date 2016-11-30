@@ -6,10 +6,11 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('StartCtrl', function($scope, $rootScope) {
+app.controller('StartCtrl', function($scope, $rootScope, $state) {
 	$scope.players = ["1.png", "2.png", "3.png", "4.png"];
 	$rootScope.mainCharacter = "1.png";
 	$scope.select = function(character) {
 		$rootScope.mainCharacter = character;
+		$state.go("home");
 	}
 });

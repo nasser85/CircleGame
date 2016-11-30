@@ -6,7 +6,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('HomeCtrl', function($scope, $rootScope, UtilsFactory, MovementFactory, MainCharacterService) {
+app.controller('HomeCtrl', function($scope, $rootScope, UtilsFactory, MovementFactory, MainCharacterService, $state) {
 		$scope.skulls = 0;
         $scope.game = false;
         $scope.player = $rootScope.mainCharacter || "1.png";
@@ -56,6 +56,10 @@ app.controller('HomeCtrl', function($scope, $rootScope, UtilsFactory, MovementFa
         $scope.replay = function() {
             destroyGame();
             startGame();
+        }
+        $scope.mainMenu = function() {
+            destroyGame();
+            $state.go("start");
         }
         
         $(document).mousemove(function(event){

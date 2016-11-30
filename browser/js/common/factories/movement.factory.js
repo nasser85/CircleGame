@@ -99,7 +99,7 @@ app.factory('MovementFactory', function() {
     } else {
       if (circleRight >= left + 30 && circleLeft <= right - 30 && circleTop <= bottom - 30 && circleBottom >= top + 30) {
         if (parseInt(circle.image.height) < parseInt(character.style.height)) {
-            circle.image.className = "magictime puffOut";
+            circle.image.className = "magictime bombRightOut";
             setTimeout(function() {
               if (circle.directionY > 0) {
                 circle.image.style.top = '4000px';
