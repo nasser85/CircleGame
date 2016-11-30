@@ -1,7 +1,10 @@
-# Untitled Circle Game Project
-## Screenshot
+# Circles and Skulls
+## Screenshots
 <p align="center">
-  <img src="https://nasser85.github.io/personal-site/game.png" width="40%"/>
+  <h3><em>Title Screen</em></h3>
+  <img src="https://nasser85.github.io/personal-site/circle1.png" width="50%"/>
+  <h3><em>Example Game Play</em></h3>
+  <img src="https://nasser85.github.io/personal-site/circle2.png" width="50%"/>
 </p>
 
 ## Getting Started
