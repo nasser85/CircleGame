@@ -18,7 +18,7 @@ app.factory('UtilsFactory', [ 'CircleService', 'GemService', function(CircleServ
 	}
 
 	utilsFactory.createCreatureWave = function(number) {
-		var num = number || 28;
+		var num = number || 32;
 		var img = creatureImages[5];
 		var sizes = ['50', '75', '100', '125', '150', '175', '200'];
 		var x;
@@ -53,7 +53,7 @@ app.factory('UtilsFactory', [ 'CircleService', 'GemService', function(CircleServ
 	}
 
 	utilsFactory.createGemWave = function(number) {
-		var num = number || 80;
+		var num = number || 108;
 		var gems = [];
 		var color;
 		var x;
